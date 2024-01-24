@@ -1,26 +1,27 @@
 import { Container, Header, MovieList, Movie } from "./styles";
+import { APIKey } from "../../config/chave";
+import { useEffect, useState } from "react";
 
 function Home() {
 
-    const arrayMovies = [
-        {
-            id: 1,
-            title: 'Spider Man',
-            image_url: 'https://www.itaucinemas.com.br/_img/_filmes/5327_capa.jpg?Barbie',
-        },
-
-        {
-            id: 2,
-            title: 'Avengers',
-            image_url: 'https://www.itaucinemas.com.br/_img/_filmes/5327_capa.jpg?Barbie',
-        },
-
-        {
-            id: 3,
-            title: 'Barbie',
-            image_url: 'https://www.itaucinemas.com.br/_img/_filmes/5327_capa.jpg?Barbie',
+    const [movies, setMovies] = useState([]);
+    
+    const buscaFilme = {
+        method: 'GET',
+        headers: {
+          accept: 'application/json',
+          Authorization: `Bearer ${APIKey}`     
         }
-    ]
+      }; 
+
+    useEffect(() => {
+
+      fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', buscaFilme)
+        .then(response => response.json())
+        .then(response => setMovies(response.results))
+        .catch(err => console.error(err));
+        
+    }, [])
 
     return (
     <>
@@ -43,10 +44,10 @@ function Home() {
             <h1>Movies</h1>
             <MovieList>
 
-                {arrayMovies.map(movie => {
+                {movies.map(movie => {
                     return (
                         <Movie key={movie.id}>
-                            <a href="https://google.com.br"><img src={movie.image_url} alt={movie.title}/></a>
+                            <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/></a>
                             <span>{movie.title}</span> 
                         </Movie>
                     )
