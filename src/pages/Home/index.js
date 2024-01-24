@@ -1,6 +1,7 @@
 import { Container, Header, MovieList, Movie } from "./styles";
-import { APIKey } from "../../config/chave";
 import { useEffect, useState } from "react";
+import MelhoresFilmes from "./bemAvaliados";
+import EmBreve from "./emBreve";
 
 function Home() {
 
@@ -10,16 +11,17 @@ function Home() {
         method: 'GET',
         headers: {
           accept: 'application/json',
-          Authorization: `Bearer ${APIKey}`     
+          Authorization: `Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI0Zjk4NmU2NzUzOTc2NTI3MDk3ODlmYTBhMzM4NjJhZSIsInN1YiI6IjY1YjA2ZGQ4YmQ1ODhiMDBhZDk2OGM0MCIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.eFXpWHM1WLGC_k3QN91L7nHZ7SQS17qzBZZX8UUX_Y0`     
         }
       }; 
 
-    useEffect((buscaFilme) => {
+    useEffect(() => {
 
       fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', buscaFilme)
         .then(response => response.json())
         .then(response => setMovies(response.results))
         .catch(err => console.error(err));
+
         
     }, [])
 
@@ -28,7 +30,13 @@ function Home() {
         <Header>
             <div className="cabecalho">
                 <div className="nome">
-                    <h2>CineArte</h2>
+                    <h1>CineArte</h1>
+                </div>
+
+                <div className="menu">
+                    <button type="button"><a className="links" href="#populares">Populares</a></button>
+                    <button type="button"><a className="links" href="#bemAvaliados">Melhor Avaliados</a></button>
+                    <button type="button"><a className="links" href="#em_breve">Em Breve</a></button>
                 </div>
 
                 <div className="pesquisa">
@@ -40,20 +48,31 @@ function Home() {
             <hr></hr>
         </Header>
         
-        <Container>
+        <Container id="populares">
+
             <h1>Filmes Populares</h1>
+
             <MovieList>
 
-                {movies.map(movie => {
-                    return (
-                        <Movie key={movie.id}>
-                            <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`} alt={movie.title}/></a>
-                            <span>{movie.title}</span> 
+                {movies.map(movies => (
+                        <Movie key={movies.id}>
+                            <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`} alt={movies.title}/></a>
+                            <span>{movies.title}</span> 
                         </Movie>
-                    )
-                })}
+                    
+                ))}
+
 
             </MovieList>
+
+            <hr/>
+             
+            <MelhoresFilmes />
+
+            <hr/>
+
+            <EmBreve/>
+
         </Container>
     </>
     )

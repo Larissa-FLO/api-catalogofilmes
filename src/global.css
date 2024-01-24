@@ -11,4 +11,11 @@ body {
   background-color: black;
   color: white;
   padding: 2rem;
+  scroll-behavior: smooth;
+}
+
+
+.links {
+  text-decoration: none;
+  color: white;
 }
