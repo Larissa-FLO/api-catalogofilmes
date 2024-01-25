@@ -1,5 +1,6 @@
 import { Container, Header, MovieList, Movie } from "./styles";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function MelhoresFilmes() {
 
@@ -15,7 +16,7 @@ function MelhoresFilmes() {
 
     useEffect(() => {
 
-      fetch('https://api.themoviedb.org/3/movie/top_rated?language=en-US&page=1', melhorAvaliados)
+      fetch('https://api.themoviedb.org/3/movie/top_rated?language=pt-BR&page=1', melhorAvaliados)
         .then(response => response.json())
         .then(response => setBemAvaliados(response.results))
         .catch(err => console.error(err));
@@ -33,7 +34,7 @@ function MelhoresFilmes() {
     
                     {bemAvaliados.map(bemAvaliados => (
                             <Movie key={bemAvaliados.id}>
-                                <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${bemAvaliados.poster_path}`} alt={bemAvaliados.title}/></a>
+                                <Link to={`/detalhes/${bemAvaliados.id}`} ><img src={`https://image.tmdb.org/t/p/w500${bemAvaliados.poster_path}`} alt={bemAvaliados.title}/></Link>
                                 <span>{bemAvaliados.title}</span> 
                             </Movie>
                         

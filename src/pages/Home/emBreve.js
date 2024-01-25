@@ -1,5 +1,6 @@
 import { Container, MovieList, Movie } from "./styles";
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 
 function EmBreve() {
 
@@ -15,7 +16,7 @@ function EmBreve() {
 
     useEffect(() => {
 
-      fetch('https://api.themoviedb.org/3/movie/upcoming?language=en-US&page=1', emBreve)
+      fetch('https://api.themoviedb.org/3/movie/upcoming?language=pt-BR&page=1', emBreve)
         .then(response => response.json())
         .then(response => setUpComing(response.results))
         .catch(err => console.error(err));
@@ -33,7 +34,7 @@ function EmBreve() {
     
                     {upComing.map(upComing => (
                             <Movie key={upComing.id}>
-                                <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${upComing.poster_path}`} alt={upComing.title}/></a>
+                                <Link to={`/detalhes/${upComing.id}`} ><img src={`https://image.tmdb.org/t/p/w500${upComing.poster_path}`} alt={upComing.title}/></Link>
                                 <span>{upComing.title}</span> 
                             </Movie>
                         

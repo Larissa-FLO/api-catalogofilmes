@@ -4,6 +4,7 @@ export const Header = styled.div`
 background-color: black;
 position: -webkit-sticky; /* Necessário para funcionar no Safari */
 position: sticky;
+z-index: 999999;
 top: 0;
 width: 100%;
 
@@ -11,9 +12,12 @@ width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 3rem;
+    height: 100%;
     padding: 1rem;
-    margin-bottom: 2rem;
+    max-width: 1440px;
+    margin: 0 auto;
+
+   
 }
 
 h1 {
@@ -94,7 +98,9 @@ hr {
 `
 
 export const Container = styled.div`
-padding-top: 1rem;
+padding: 2rem;
+max-width: 1440px;
+margin: 0 auto;
 
 h1 {
     text-align: flex-start;

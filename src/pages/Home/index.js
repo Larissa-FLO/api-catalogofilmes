@@ -2,6 +2,7 @@ import { Container, Header, MovieList, Movie } from "./styles";
 import { useEffect, useState } from "react";
 import MelhoresFilmes from "./bemAvaliados";
 import EmBreve from "./emBreve";
+import { Link } from "react-router-dom";
 
 function Home() {
 
@@ -17,7 +18,7 @@ function Home() {
 
     useEffect(() => {
 
-      fetch('https://api.themoviedb.org/3/movie/popular?language=en-US&page=1', buscaFilme)
+      fetch('https://api.themoviedb.org/3/movie/popular?language=pt-BR&page=1', buscaFilme)
         .then(response => response.json())
         .then(response => setMovies(response.results))
         .catch(err => console.error(err));
@@ -56,7 +57,7 @@ function Home() {
 
                 {movies.map(movies => (
                         <Movie key={movies.id}>
-                            <a href="https://google.com.br"><img src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`} alt={movies.title}/></a>
+                            <Link to={`/detalhes/${movies.id}`} ><img src={`https://image.tmdb.org/t/p/w500${movies.poster_path}`} alt={movies.title}/></Link>
                             <span>{movies.title}</span> 
                         </Movie>
                     

@@ -1,0 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Titillium+Web:wght@300;400;700&display=swap");
+
+body {
+    margin: 0 auto;
+    padding: 10rem;
+    
+}
+
+.caixaDetalhes {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.caixaMedia {
+    display: flex;
+    flex-direction: row;
+}
+
+.informacoes {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    height: 100%;
+    max-width: 60rem;
+    gap: 5rem;
+    padding: 2rem;
+}
+
+.tituloFilme {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+    height: 10rem;
+    width: auto;
+    font-size: 30px;
+    gap: 2rem;
+}
+
+.dadosFilme {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    font-size: 20px;
+    height: 10rem;
+}
+
+.sinopse {
+    display: flex;
+    align-items: flex-start;
+    font-size: 16px;
+    justify-content: end;
+    
+}
+
+.frase {
+    display: flex;
+    font-size: 60px;
+    justify-content: center;
+    padding-top: 5rem;
+}
+
+.caixaDetalhes button {
+    display: flex;
+    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    background-color: white;
+    color: black;
+    border-radius: 5px;
+    height: 3.5rem;
+    font-size: 35px;
+    font-weight: 700;
+    width: 100%;
+    cursor: pointer;
+}
+
+.caixaDetalhes button:hover {
+    display: flex;
+    margin-top: 5rem;
+    justify-content: center;
+    align-items: center;
+    border: 5px solid white;
+    background-color: black;
+    color: white;
+    border-radius: 5px;
+    height: 3.5rem;
+    font-size: 35px;
+    font-weight: 700;
+    transform: scale(1.1);
+    transition: all .3s;
+}
+
+.btn {
+    text-decoration: none;
+}
